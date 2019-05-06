@@ -1,5 +1,6 @@
 # Snake Game
 A web snake game using HTML and JavaScript.
+
 [Owen Holman](https://owenholman.com/)'s first git repo.
 
 ## Play
