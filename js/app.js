@@ -35,7 +35,7 @@ const draw = () => {
 	// We redraw everything every frame
 
 	// Draws/clears canvas
-	ctx.fillStyle = "black";
+	ctx.fillStyle = '#424242';
 	ctx.fillRect(0, 0, CANVAS.width, CANVAS.height);
 
 	// checks if snake died

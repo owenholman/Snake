@@ -14,7 +14,7 @@ var FoodObject = function() {
 			this.y = randomy * scale;
 			this.present = true;
 		}
-		ctx.fillStyle = 'red';
+		ctx.fillStyle = '#e91e63';
 		ctx.fillRect(this.x, this.y, scale, scale);
 	}
 }

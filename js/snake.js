@@ -66,7 +66,7 @@ var SnakeObject = function() {
 		console.log(this.fullLength);
 	}
 	this.show = () => {
-		ctx.fillStyle = 'green';
+		ctx.fillStyle = '#00e676';
 		this.tail.forEach(cell => {
 			ctx.fillRect(cell.x, cell.y, scale, scale);
 		})
