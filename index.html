@@ -2,9 +2,24 @@
 <html>
 <head>
 	<title>JavaScript Snake Game</title>
+	<link rel="stylesheet" href="css/styles.css"></link>
 </head>
 <body>
-	<canvas id="game"></canvas>
+	<div class="left-col columns">
+		<div class="score-section">
+			<h3><u>Score</u></h3>
+			<p><em>Current score: </em><span class="score-num"></span></p>
+		</div>
+	</div>
+	<div class="middle-col columns">
+		<div class="game-info">
+			<h1>JavaScript Snake Game</h1>
+			<input id="game-btn" type="button">
+		</div>
+		<div class="game-cover"></div>
+		<canvas id="game"></canvas>
+	</div>
+	<div class="right-col columns"></div>
 	<script type="text/javascript" src="js/food.js"></script>
 	<script type="text/javascript" src="js/snake.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>

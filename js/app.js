@@ -1,10 +1,13 @@
 // Canvas setup
 const CANVAS = document.getElementById('game');
-CANVAS.width=600;
-CANVAS.height=600;
+CANVAS.width = 600;
+CANVAS.height = 600;
 const ctx = CANVAS.getContext('2d');
-const scale = 20;
 
+const gameBtn = document.getElementById('game-btn');
+gameBtn.value = "Play";
+
+const scale = 20;
 let animate = true;
 
 // New instance of snake object from snake.js
@@ -16,6 +19,16 @@ const fps = 1000/10; // 1000ms divided by 10fps
 let t1 = Date.now(); // First timestamp marked now
 let t2;
 let tchange;
+
+const updateScore = () => {
+	const scoreDiv = document.getElementsByClassName("score-num")[0];
+	scoreDiv.innerHTML = snake.fullLength;
+}
+
+const gameOver = () => {
+	ctx.fillStyle = '#d50000';
+	ctx.fillRect(0, 0, CANVAS.width, CANVAS.height);
+}
 
 const play = () => {
 	if (animate) {
@@ -42,6 +55,7 @@ const draw = () => {
 	if (snake.dead()) {
 		console.log('The snake died!');
 		animate = false;
+		gameOver();
 	}
 
 	// checks if snake ate food
@@ -56,6 +70,9 @@ const draw = () => {
 
 	// Generate the food after it is possibly eaten
 	food.generate();
+
+	// Updates scoreboard
+	updateScore();
 }
 
 window.addEventListener('keydown', e => {
@@ -95,4 +112,10 @@ window.addEventListener('keydown', e => {
 	}
 });
 
-window.requestAnimationFrame(play); // Calls play and sets off the start of the game
+gameBtn.addEventListener('click', function() {
+	document.getElementsByClassName('game-info')[0].style.display = 'none';
+	document.getElementsByClassName('game-cover')[0].style.display = 'none';
+	setTimeout(function() {
+		window.requestAnimationFrame(play); // Calls play and sets off the start of the game
+	}, 200);
+});

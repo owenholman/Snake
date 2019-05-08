@@ -1,0 +1,35 @@
+body {
+	margin: 0;
+}
+.columns {
+	margin: 0;
+	height: 100vh;
+	float: left;
+    background: #c5cae9;
+}
+.left-col, .right-col {
+	width: calc((100% - 700px) / 2);
+}
+.middle-col {
+	position: relative;
+	width: 700px;
+	text-align: center;
+}
+.game-info,
+.game-cover {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+.game-info {
+	z-index: 100;
+}
+.game-cover {
+	z-index: 50;
+	background-color: #3d5afe;
+	opacity: 0.5
+}
+.game {
+	z-index: 0;
+	position: absolute;
+}

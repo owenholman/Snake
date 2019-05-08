@@ -63,7 +63,6 @@ var SnakeObject = function() {
 		}
 		this.x = this.x + (this.vx * scale);
 		this.y = this.y + (this.vy * scale);
-		console.log(this.fullLength);
 	}
 	this.show = () => {
 		ctx.fillStyle = '#00e676';
