@@ -1,18 +1,27 @@
 // Canvas setup
 const CANVAS = document.getElementById('game');
-CANVAS.width = 600;
 CANVAS.height = 600;
+CANVAS.width = 600;
 const ctx = CANVAS.getContext('2d');
 
+// Colors to be changed by theme
+var colorCanvas;
+var colorGameOver;
+var colorSnake;
+var colorFood;
+
+const finalScore = document.getElementById('final-score');
+finalScore.style.display = 'none';
 const gameBtn = document.getElementById('game-btn');
 gameBtn.value = "Play";
 
 const scale = 20;
 let animate = true;
+let flash = 0;
+let gameCount = 0;
 
-// New instance of snake object from snake.js
-const snake = new SnakeObject();
-const food = new FoodObject();
+let snake;
+let food;
 
 // For fps control
 const fps = 1000/10; // 1000ms divided by 10fps
@@ -21,13 +30,37 @@ let t2;
 let tchange;
 
 const updateScore = () => {
-	const scoreDiv = document.getElementsByClassName("score-num")[0];
+	const scoreDiv = document.getElementById("score-num");
 	scoreDiv.innerHTML = snake.fullLength;
 }
 
+const randomProvoke = () => {
+	const provocations = [
+		'Want another go?',
+		'Try again',
+		'Encore! Encore!',
+		'Attempt a better score'
+	];
+	let chosenProvoke = Math.floor(Math.random() * provocations.length);
+	return provocations[chosenProvoke];
+}
+
 const gameOver = () => {
-	ctx.fillStyle = '#d50000';
-	ctx.fillRect(0, 0, CANVAS.width, CANVAS.height);
+	if (flash < 1) {
+		ctx.fillStyle = colorGameOver;
+		ctx.fillRect(0, 0, CANVAS.width, CANVAS.height);
+		flash++;
+	} else {
+		flash = 2;
+		animate = false;
+		ctx.fillStyle = colorCanvas;
+		ctx.fillRect(0, 0, CANVAS.width, CANVAS.height);
+		finalScore.style.display = 'block';
+		finalScore.innerHTML = ('Your final score was: ' + snake.fullLength);
+		gameBtn.value = randomProvoke();
+		document.getElementById('game-info').style.display = 'flex';
+		document.getElementById('game-cover').style.display = 'flex';
+	}
 }
 
 const play = () => {
@@ -48,31 +81,30 @@ const draw = () => {
 	// We redraw everything every frame
 
 	// Draws/clears canvas
-	ctx.fillStyle = '#424242';
+	ctx.fillStyle = colorCanvas;
 	ctx.fillRect(0, 0, CANVAS.width, CANVAS.height);
 
 	// checks if snake died
 	if (snake.dead()) {
-		console.log('The snake died!');
-		animate = false;
+		console.log('Snake died.');
 		gameOver();
+	} else {
+		// checks if snake ate food
+		if (snake.eatFood(food)) {
+			snake.fullLength += 4;
+			food.present = false;
+		}
+
+		// Draws/updates snake
+		snake.update();
+		snake.show();
+
+		// Generate the food after it is possibly eaten
+		food.generate();
+
+		// Updates scoreboard
+		updateScore();
 	}
-
-	// checks if snake ate food
-	if (snake.eatFood(food)) {
-		snake.fullLength += 4;
-		food.present = false;
-	}
-
-	// Draws/updates snake
-	snake.update();
-	snake.show();
-
-	// Generate the food after it is possibly eaten
-	food.generate();
-
-	// Updates scoreboard
-	updateScore();
 }
 
 window.addEventListener('keydown', e => {
@@ -102,20 +134,31 @@ window.addEventListener('keydown', e => {
 		break;
 
 		case 'Space': // keycode for 'spacebar'; plays/pauses the game
-			if (animate) {
-				animate = false;
-			} else {
-				animate = true;
-				window.requestAnimationFrame(play);
+			if (snake.dead() == false) {
+				if (animate) {
+					animate = false;
+				} else {
+					animate = true;
+					window.requestAnimationFrame(play);
+				}
 			}
+		break;
+
+		case 'Enter': // Clicks button to start game
+			gameBtn.click();
 		break;
 	}
 });
 
 gameBtn.addEventListener('click', function() {
-	document.getElementsByClassName('game-info')[0].style.display = 'none';
-	document.getElementsByClassName('game-cover')[0].style.display = 'none';
-	setTimeout(function() {
+	document.getElementById("game-info").style.display = 'none';
+	document.getElementById('game-cover').style.display = 'none';
+	if (gameCount < 1) {
+		snake = new SnakeObject();
+		food = new FoodObject();
+		gameCount++;
 		window.requestAnimationFrame(play); // Calls play and sets off the start of the game
-	}, 200);
+	} else {
+		window.location.reload();
+	}
 });
