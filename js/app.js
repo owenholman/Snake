@@ -10,39 +10,33 @@ var colorGameOver;
 var colorSnake;
 var colorFood;
 
-const finalScore = document.getElementById('final-score');
-finalScore.style.display = 'none';
+const currentScore = document.getElementById('currentscore-num');
 const gameBtn = document.getElementById('game-btn');
 gameBtn.value = "Play";
 
-const scale = 20;
-let animate = true;
-let flash = 0;
-let gameCount = 0;
+const finalScoreDiv = document.getElementById('game-f-score');
+const finalScore = document.getElementById('finalscore-num');
+const finalScoreBtn = document.getElementById('game-f-ok');
 
-let snake;
-let food;
+const scale = 20;
+var animating = false;
+var flash = 0;
+
+var snake;
+var food;
+
+var dx;
+var dy;
 
 // For fps control
-const fps = 1000/10; // 1000ms divided by 10fps
+const fps = 1000/13; // 1000ms divided by fps
 let t1 = Date.now(); // First timestamp marked now
 let t2;
 let tchange;
 
 const updateScore = () => {
-	const scoreDiv = document.getElementById("score-num");
-	scoreDiv.innerHTML = snake.fullLength;
-}
-
-const randomProvoke = () => {
-	const provocations = [
-		'Want another go?',
-		'Try again',
-		'Encore! Encore!',
-		'Attempt a better score'
-	];
-	let chosenProvoke = Math.floor(Math.random() * provocations.length);
-	return provocations[chosenProvoke];
+	currentScore.innerHTML = snake.tail.length;
+	finalScore.innerHTML = snake.tail.length;
 }
 
 const gameOver = () => {
@@ -52,19 +46,14 @@ const gameOver = () => {
 		flash++;
 	} else {
 		flash = 2;
-		animate = false;
-		ctx.fillStyle = colorCanvas;
-		ctx.fillRect(0, 0, CANVAS.width, CANVAS.height);
-		finalScore.style.display = 'block';
-		finalScore.innerHTML = ('Your final score was: ' + snake.fullLength);
-		gameBtn.value = randomProvoke();
-		document.getElementById('game-info').style.display = 'flex';
-		document.getElementById('game-cover').style.display = 'flex';
+		animating = false;
+		finalScoreDiv.style.display = 'block';
+		finalScoreBtn.style.display = 'block';
 	}
 }
 
 const play = () => {
-	if (animate) {
+	if (animating) {
 		window.requestAnimationFrame(play); // Loops the function every time
 
 		// Controlling the fps
@@ -96,6 +85,9 @@ const draw = () => {
 		}
 
 		// Draws/updates snake
+		if (dx != null && dy != null) {
+			snake.changedir(dx, dy);
+		}
 		snake.update();
 		snake.show();
 
@@ -111,54 +103,64 @@ window.addEventListener('keydown', e => {
 	switch(e.code) {
 		case 'ArrowLeft': case 'KeyA': // keycode for 'left'
 			if (snake.validMove(e.code)) {
-				snake.changedir(-1, 0);
+				dx = -1;
+				dy = 0;
 			}
 		break;
 
 		case 'ArrowUp': case 'KeyW': // keycode for 'up'
 			if (snake.validMove(e.code)) {
-				snake.changedir(0, -1);
+				dx = 0;
+				dy = -1;
 			}
 		break;
 
 		case 'ArrowRight': case 'KeyD': // keycode for 'right'
 			if (snake.validMove(e.code)) {
-				snake.changedir(1, 0);
+				dx = 1;
+				dy = 0;
 			}
 		break;
 
 		case 'ArrowDown': case 'KeyS': // keycode for 'down'
 			if (snake.validMove(e.code)) {
-				snake.changedir(0, 1);
+				dx = 0;
+				dy = 1;
 			}
 		break;
 
 		case 'Space': // keycode for 'spacebar'; plays/pauses the game
 			if (snake.dead() == false) {
-				if (animate) {
-					animate = false;
+				if (animating) {
+					animating = false;
 				} else {
-					animate = true;
+					animating = true;
 					window.requestAnimationFrame(play);
 				}
 			}
 		break;
 
 		case 'Enter': // Clicks button to start game
+			finalScoreBtn.click();
 			gameBtn.click();
 		break;
 	}
 });
 
 gameBtn.addEventListener('click', function() {
-	document.getElementById("game-info").style.display = 'none';
-	document.getElementById('game-cover').style.display = 'none';
-	if (gameCount < 1) {
+	if (animating) {
+	} else if (!animating && flash < 1){
+		document.getElementById("cover-content").style.display = 'none';
+		document.getElementById("game-c-score").style.display = 'block';
 		snake = new SnakeObject();
 		food = new FoodObject();
-		gameCount++;
+		animating = true;
 		window.requestAnimationFrame(play); // Calls play and sets off the start of the game
-	} else {
+	}
+});
+
+finalScoreBtn.addEventListener('click', function() {
+	if (flash > 1) {
 		window.location.reload();
 	}
 });

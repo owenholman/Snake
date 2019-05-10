@@ -1,17 +1,19 @@
 const input = document.getElementsByName("theme");
 const selectArray = [{
 	b: document.getElementsByTagName("body")[0],
+	cover: document.getElementById("cover-content"),
+	game: document.getElementById("game-content"),
 	l_col: document.getElementById("left-col"),
+	m_col: document.getElementById("middle-col"),
 	r_col: document.getElementById("right-col"),
-	sec: document.getElementsByClassName("section"),
-	s_sec: document.getElementById("score-section"),
-	t_sec: document.getElementById("theme-section"),
-	l_sec: document.getElementById("leaderboards-section"),
-	info: document.getElementById("game-info"),
-	i_f_score: document.getElementById("final-score"),
-	i_g_btn: document.getElementById("game-btn"),
-	g_cover: document.getElementById("game-cover")}
-];
+	hs_sec: document.getElementById("hs-sec"),
+	theme_sec: document.getElementById("theme-sec"),
+	title_sec: document.getElementById("title-sec"),
+	lb_sec: document.getElementById("lb-sec"),
+	hs_num: document.getElementById("game-f-score"),
+	cs_num: document.getElementById("game-c-score"),
+	g_info: document.getElementById("game-info")
+}];
 
 const defaultTheme = () => {
 	colorCanvas = "#595959";
@@ -20,14 +22,20 @@ const defaultTheme = () => {
 	colorSnake = "#00CA3F";
 
 	let elements = selectArray[0];
-	elements.b.style.fontFamily = "Arial, sans-serif";
-	elements.l_col.style.backgroundColor = "#D9D9D9";
-	elements.r_col.style.backgroundColor = "#D9D9D9";
-	for (i = 0; i < elements.sec.length; i++) {
-		elements.sec[i].style.backgroundColor = "#F2F2F2";
-	}
-	elements.info.style.color = "#F2F2F2";
-	elements.g_cover.style.backgroundColor = "#595959";
+	elements.b.style.fontFamily = "Arial";
+	elements.b.style.backgroundColor = "#91FD57";
+	elements.title_sec.style.borderRadius = "25px";
+	elements.title_sec.style.border = "5px solid #03BF00";
+	elements.game.style.color = "#F7F2FF";
+}
+
+const dark = () => {
+	colorCanvas = "";
+	colorGameOver = "";
+	colorFood = "";
+	colorSnake = "";
+
+
 }
 
 const applyTheme = (theme) => {

@@ -35,7 +35,7 @@ var SnakeObject = function() {
 	}
 	this.dead = () => {
 		// checks if the snake hit the edge
-		if (this.x < 0 || this.y < 0 || this.x > CANVAS.width || this.y > CANVAS.height) {
+		if (this.x < 0 || this.y < 0 || this.x >= CANVAS.width || this.y >= CANVAS.height) {
 			return true;
 		}
 		// checks if the snake bit itself
@@ -68,6 +68,6 @@ var SnakeObject = function() {
 		ctx.fillStyle = colorSnake;
 		this.tail.forEach(cell => {
 			ctx.fillRect(cell.x, cell.y, scale, scale);
-		})
+		});
 	}
 }

@@ -4,48 +4,133 @@ html {
 	right: 0;
 	bottom: 0;
 	left: 0;
-	min-height: 100%;
+	overflow: hidden;
 }
 body {
-	display: flex;
-	flex-wrap: wrap-reverse;
 	margin: 0;
-	height: 100%;
+	width: 100vw;
+	height: 100vh;
 }
-#left-col {
-	min-width: 200px;
-	width: calc(100% - 700px);
-	display: grid;
-	grid-row-gap: 20px;
-}
-#right-col {
-	display: grid;
-	width: 700px;
-}
-#game,
-#game-info,
-#game-cover {
-	grid-column: 1;
-	grid-row: 1;
-}
-#game {
-	z-index: 0;
-	margin: auto;
-}
-#game-cover {
-	z-index: 50;
-	width: 600px;
-	height: 600px;
-	margin: auto;
-}
-#game-info {
+
+#cover-content {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
 	z-index: 100;
+}
+
+#game-content {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 0;
+}
+
+#left-col,
+#middle-col,
+#right-col {
+	width: calc(100% / 3);
+}
+
+#left-col {
+	height: 100%;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+#middle-col {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
 	justify-content: center;
 }
-.section {
-	grid-column: 1;
-	padding: 0 50px 0 50px;
+
+#right-col {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#hs-sec {
+	margin: 40px;
+}
+
+#theme-sec {
+	margin: 40px;
+	display: flex;
+	flex-direction: column;
+}
+
+#title-sec {
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+#lb-sec {
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+}
+
+#lb-sec h3 {
+	text-align: center;
+}
+
+#title-sec h1 {
+	text-align: center;
+}
+
+#username {
+	width: 70%;
+	margin: auto;
+}
+
+#game-btn {
+	width: 25%;
+	margin: auto;
+}
+
+#game-info {
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#game-f-score {
+	display: none;
+	z-index: 50;
+	text-align: center;
+}
+
+#game-f-ok {
+	display: none;
+	z-index: 50;
+	margin: auto;
+	width: 40px;
+}
+
+#game-c-score {
+	display: none;
+	position: absolute;
+	z-index: 50;
+	bottom: 0;
+}
+
+#game {
+	position: absolute;
+	z-index: 25;
 }
