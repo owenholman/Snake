@@ -29,7 +29,7 @@ var dx;
 var dy;
 
 // For fps control
-const fps = 1000/13; // 1000ms divided by fps
+const fps = 1000/11; // 1000ms divided by fps
 let t1 = Date.now(); // First timestamp marked now
 let t2;
 let tchange;

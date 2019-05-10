@@ -1,5 +1,5 @@
 const input = document.getElementsByName("theme");
-const selectArray = [{
+const elements = {
 	b: document.getElementsByTagName("body")[0],
 	cover: document.getElementById("cover-content"),
 	game: document.getElementById("game-content"),
@@ -13,7 +13,7 @@ const selectArray = [{
 	hs_num: document.getElementById("game-f-score"),
 	cs_num: document.getElementById("game-c-score"),
 	g_info: document.getElementById("game-info")
-}];
+};
 
 const defaultTheme = () => {
 	colorCanvas = "#595959";
@@ -21,21 +21,46 @@ const defaultTheme = () => {
 	colorFood = "#FF0000";
 	colorSnake = "#00CA3F";
 
-	let elements = selectArray[0];
 	elements.b.style.fontFamily = "Arial";
-	elements.b.style.backgroundColor = "#91FD57";
-	elements.title_sec.style.borderRadius = "25px";
-	elements.title_sec.style.border = "5px solid #03BF00";
 	elements.game.style.color = "#F7F2FF";
+	elements.cover.style.backgroundColor = "#97D2F7";
+	elements.game.style.backgroundColor = "#97D2F7";
+	elements.hs_sec.style.backgroundColor = "#4CB5F5";
+	elements.hs_sec.style.borderRadius = "15px";
+	elements.hs_sec.style.border = "2px solid #486475";
+	elements.theme_sec.style.backgroundColor = "#4CB5F5";
+	elements.theme_sec.style.borderRadius = "15px";
+	elements.theme_sec.style.border = "2px solid #486475"
+	elements.title_sec.style.backgroundColor = "#4CB5F5";
+	elements.title_sec.style.borderRadius = "15px";
+	elements.title_sec.style.border = "2px solid #486475";
+	elements.lb_sec.style.backgroundColor = "#4CB5F5";
+	elements.lb_sec.style.borderRadius = "15px";
+	elements.lb_sec.style.border = "2px solid #486475";
 }
 
-const dark = () => {
-	colorCanvas = "";
-	colorGameOver = "";
-	colorFood = "";
-	colorSnake = "";
+const darkTheme = () => {
+	colorCanvas = "#17141F";
+	colorGameOver = "#FF0000";
+	colorFood = "#FF0000";
+	colorSnake = "#00CA3F";
 
-
+	elements.b.style.fontFamily = "Arial";
+	elements.game.style.color = "#F7F2FF";
+	elements.cover.style.backgroundColor = "#97D2F7";
+	elements.game.style.backgroundColor = "#97D2F7";
+	elements.hs_sec.style.backgroundColor = "#4CB5F5";
+	elements.hs_sec.style.borderRadius = "15px";
+	elements.hs_sec.style.border = "2px solid #486475";
+	elements.theme_sec.style.backgroundColor = "#4CB5F5";
+	elements.theme_sec.style.borderRadius = "15px";
+	elements.theme_sec.style.border = "2px solid #486475"
+	elements.title_sec.style.backgroundColor = "#4CB5F5";
+	elements.title_sec.style.borderRadius = "15px";
+	elements.title_sec.style.border = "2px solid #486475";
+	elements.lb_sec.style.backgroundColor = "#4CB5F5";
+	elements.lb_sec.style.borderRadius = "15px";
+	elements.lb_sec.style.border = "2px solid #486475";
 }
 
 const applyTheme = (theme) => {

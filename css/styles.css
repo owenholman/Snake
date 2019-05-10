@@ -63,6 +63,13 @@ body {
 	justify-content: center;
 }
 
+#hs-sec,
+#theme-sec,
+#title-sec,
+#lb-sec {
+	padding: 15px;
+}
+
 #hs-sec {
 	margin: 40px;
 }
