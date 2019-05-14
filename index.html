@@ -5,14 +5,13 @@
 	<link rel="stylesheet" href="css/styles.css"></link>
 </head>
 <body>
-
 	<div id="cover-content">
 		<div id="left-col">
 			<div id="hs-sec">
-				<p>Your highest score: <span id="highscore-num"></span></p>
+				<p class="underline">Your highest score: <span id="highscore-num"></span></p>
 			</div>
 			<div id="theme-sec">
-				<h3>Themes</h3>
+				<h3 class="underline">Themes</h3>
 				<div id="t-default">
 					<input type="radio" id="default" name="theme" value="Default" checked>
 					<label for="default">Default</label>
@@ -36,7 +35,7 @@
 		</div>
 		<div id="right-col">
 			<div id="lb-sec">
-				<h3>Leaderboards</h3>
+				<h3 class="underline">Leaderboards</h3>
 				<p>#1: <em><span>Name Name</span></em><br><span>Score</span></p>
 				<p>#2: <em><span>Name Name</span></em><br><span>Score</span></p>
 				<p>#3: <em><span>Name Name</span></em><br><span>Score</span></p>
@@ -48,12 +47,11 @@
 	<div id="game-content">
 		<div id="game-info">
 			<p id="game-f-score">Final Score: <span id="finalscore-num"></span></p>
-			<input id="game-f-ok" type="button" value="Ok">
+			<input id="game-f-ok" type="button" value="Try again">
 		</div>
 		<p id="game-c-score">Score: <span id="currentscore-num"></span></p>
 		<canvas id="game"></canvas>
 	</div>
-
 
 	<script type="text/javascript" src="js/food.js"></script>
 	<script type="text/javascript" src="js/snake.js"></script>

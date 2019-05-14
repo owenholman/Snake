@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhai|Roboto+Slab|Ubuntu');
+
 html {
 	position: absolute;
 	top: 0;
@@ -101,6 +103,7 @@ body {
 }
 
 #username {
+	height: 25px;
 	width: 70%;
 	margin: auto;
 }
@@ -127,7 +130,7 @@ body {
 	display: none;
 	z-index: 50;
 	margin: auto;
-	width: 40px;
+	width: auto;
 }
 
 #game-c-score {
