@@ -12,11 +12,14 @@ var colorFood;
 
 const currentScore = document.getElementById('currentscore-num');
 const gameBtn = document.getElementById('game-btn');
+const nameInput = document.getElementById('username');
+var username;
 gameBtn.value = "Play";
 
 const finalScoreDiv = document.getElementById('game-f-score');
-const finalScore = document.getElementById('finalscore-num');
 const finalScoreBtn = document.getElementById('game-f-ok');
+var finalScoreName = document.getElementById('finalscore-name');
+var finalScore = document.getElementById('finalscore-num');
 
 const scale = 20;
 var animating = false;
@@ -36,7 +39,6 @@ let tchange;
 
 const updateScore = () => {
 	currentScore.innerHTML = snake.tail.length;
-	finalScore.innerHTML = snake.tail.length;
 }
 
 const gameOver = () => {
@@ -47,6 +49,9 @@ const gameOver = () => {
 	} else {
 		flash = 2;
 		animating = false;
+		console.log(username);
+		finalScoreName.innerHTML = username;
+		finalScore.innerHTML = snake.tail.length;
 		finalScoreDiv.style.display = 'block';
 		finalScoreBtn.style.display = 'block';
 	}
@@ -148,14 +153,20 @@ window.addEventListener('keydown', e => {
 });
 
 gameBtn.addEventListener('click', function() {
-	if (animating) {
-	} else if (!animating && flash < 1){
-		document.getElementById("cover-content").style.display = 'none';
-		document.getElementById("game-c-score").style.display = 'block';
-		snake = new SnakeObject();
-		food = new FoodObject();
-		animating = true;
-		window.requestAnimationFrame(play); // Calls play and sets off the start of the game
+	if (nameInput.value == "") {
+		alert('Please input a name!');
+	} else {
+		username = nameInput.value;
+		if (animating) {
+
+		} else if (!animating && flash < 1){
+			document.getElementById("cover-content").style.display = 'none';
+			document.getElementById("game-c-score").style.display = 'block';
+			snake = new SnakeObject();
+			food = new FoodObject();
+			animating = true;
+			window.requestAnimationFrame(play); // Calls play and sets off the start of the game
+		}
 	}
 });
 

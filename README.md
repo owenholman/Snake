@@ -9,5 +9,3 @@ To take a look at the code, open the JavaScript files in a text editor.
 
 #### Coming features
 * More themes
-* Functional leaderboard
-* Functional local high score tracker
