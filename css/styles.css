@@ -124,6 +124,10 @@ body {
 }
 
 @media (min-width: 800px) {
+	#cover-content {
+		bottom: 0;
+	}
+
 	#middle-col,
 	.side-col {
 		width: calc(100% / 3);
@@ -140,6 +144,7 @@ body {
 		order: -1;
 		margin-top: 75px;
 	}
+	
 	.side-col {
 		width: 50%;
 	}
