@@ -165,7 +165,7 @@ window.addEventListener('keydown', e => {
 }); // End of Event listener
 
 // Adds an event listener to when the html button is clicked
-gameBtn.addEventListener('click', function() { // Begin of event listener function
+gameBtn.addEventListener('click', () => { // Begin of event listener function
 	if (nameInput.value == "") { // Checks that the user must have inputted a valid name
 		alert('Please input a name!'); // User notification
 	} else { // Runs as long as the user has a valid name
@@ -183,7 +183,7 @@ gameBtn.addEventListener('click', function() { // Begin of event listener functi
 }); // End of event listener function
 
 // Adds an event listener to the button that displays once the snake is dead
-finalScoreBtn.addEventListener('click', function() { // Begin of event listener function
+finalScoreBtn.addEventListener('click', () => { // Begin of event listener function
 	if (flash > 1) { // Checks that the flash has already occured
 		window.location.reload(); // Reloads the page
 	} // End of if statement
